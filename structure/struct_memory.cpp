@@ -3,7 +3,7 @@ using namespace std;
 struct student
 {
     char name[10];
-    long long int roll;
+     int roll;
 };
 
 int main()

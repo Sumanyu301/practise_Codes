@@ -1,18 +1,12 @@
-#include<stdio.h>
+#include <stdio.h>
 struct student
 {
+    char *name;
     int roll;
-    char name;
-};
-void fun(struct student x)
-{
-    scanf("%d",&x);
-}
+}r1;
+
 int main()
 {
-    struct student r1;
-    struct student *ptr;
-    ptr=&r1;
-    scanf("%d",&ptr->roll);
-    printf("%d",r1.roll);
+    printf("%lu",sizeof(r1));
+    return 0;
 }
