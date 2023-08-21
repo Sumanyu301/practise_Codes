@@ -1,15 +1,27 @@
 #include <iostream>
 using namespace std;
-struct book
-{
-  char title[20];
-  int pages;
-  float price;
-};
-int main ()
-{
-  struct book b1 = {"basic",345,275.50};
-  cout<<b1.pages<<endl;
-  cout<<b1.price<<endl;
-  cout<<b1.title<<endl;
+
+int factorial(int n) {
+    int fact = 1;
+    for (int i = 1; i <= n; i++) {
+        fact *= i;
+    }
+    return fact;
+}
+
+int ncr(int n, int r) {
+    int c = factorial(n) / (factorial(r) * factorial(n - r));
+    return c;
+}
+
+int main() {
+    int n, r;
+    cout << "Enter the value of n: ";
+    cin >> n;
+    cout << "Enter the value of r: ";
+    cin >> r;
+    int c = ncr(n,r);
+    cout<<c;
+    
+    return 0;
 }
