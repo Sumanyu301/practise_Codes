@@ -1,0 +1,13 @@
+def sum_of_largest_and_smallest(numbers):
+    smallest = largest = numbers[0]
+    for number in numbers:
+        if number < smallest:
+            smallest = number
+        elif number > largest:
+            largest = number
+    return smallest + largest
+
+# Example usage
+numbers = [1, 5, 10, -2, 7]
+result = sum_of_largest_and_smallest(numbers)
+print(result) # Output: -1
