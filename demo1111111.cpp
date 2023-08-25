@@ -13,7 +13,7 @@ int main() {
             result = 'Z' + result; // Z corresponds to remainder 0
             count = count / 26 - 1; // Reduce count and move to previous place value
         } else {
-            result += char('A' + remainder - 1);
+            result = char('A' + remainder - 1) + result;
             count /= 26;
         }
     }
