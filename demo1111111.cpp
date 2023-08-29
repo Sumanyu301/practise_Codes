@@ -1,24 +1,36 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-int main() {
-    int count;
-    cin >> count;
-
-    string result = ""; // To store the alphabetical representation
-
-    while (count > 0) {
-        int remainder = count % 26;
-        if (remainder == 0) {
-            result = 'Z' + result; // Z corresponds to remainder 0
-            count = count / 26 - 1; // Reduce count and move to previous place value
-        } else {
-            result = char('A' + remainder - 1) + result;
-            count /= 26;
-        }
+int main()
+{
+    int n;
+    cin >> n;
+    
+    int count = 0;
+    int a = n;
+    
+    while (a != 0)
+    {
+        a /= 10;
+        count++;
     }
-
-    cout << result << endl;
-
+    
+    int sum = 0;
+    int b = n;
+    int arr[count];
+    
+    for (int i = 0; i < count; i++)
+    {
+        arr[i] = b % 10; 
+        b /= 10;
+    }
+    
+    for (int i = 0; i < count; i++)
+    {
+        sum += pow(arr[i], count);
+    }
+    
+    cout << sum;
+    
     return 0;
 }
