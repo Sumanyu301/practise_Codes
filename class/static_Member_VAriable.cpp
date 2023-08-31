@@ -12,21 +12,14 @@ class static_v_f
         b=10;
         count++;
     }
-    static int fun();
+    
 };
 int static_v_f::count=0;
-int static_v_f::fun()
-{
-    {
-        //a++ is not allowed only static members.
-        return count;
-    }
-}
 int main()
 {
     static_v_f t1;
-    cout<<t1.fun()<<endl;
+    cout<<t1.count<<endl;
     static_v_f t2;
-    cout<<t2.fun()<<endl;
-    cout<<t1.fun()<<endl;
+    cout<<t2.count<<endl;
+    cout<<t1.count<<endl;
 }
