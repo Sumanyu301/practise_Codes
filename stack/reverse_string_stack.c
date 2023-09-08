@@ -32,13 +32,13 @@ char pop(struct stack *ptr)
     }
     else
     {
-        char a;
+        int a;
         a = (*ptr).arr[(*ptr).head];
         (*ptr).head--;
         return(a); 
     }
 }
-char peek(struct stack *ptr)    
+char peek(struct stack *ptr)
 {
     if((*ptr).head == -1)
     {
@@ -56,42 +56,15 @@ int main()
     struct stack *ptr;
     ptr=&s1;
     initialise(&s1);
-    char srr[100];
+    char srr[10];
     gets(srr);
     int i;
-    for(int i=0;srr[i]!='\0';i++)
+    for(i=0;i<sizeof(srr)/sizeof(srr[0]);i++)
     {
-        if(srr[i]=='['||srr[i]=='('||srr[i]=='{')
-        {
-            push(&s1,srr[i]);
-        }
-        else if(srr[i]==']'||srr[i]==')'||srr[i]=='}')
-        {
-            if(srr[i]==']'&&pop(&s1)=='[')
-            {
-                continue;
-            }
-            else if(srr[i]==')'&&pop(&s1)=='(')
-            {
-                continue;
-            }
-            else if (srr[i]=='}'&&pop(&s1)=='{')
-            {
-                continue;
-            }
-            else
-            {
-                printf("not balanced");
-                return 1;
-            }
-        }
+        push(&s1,srr[i]);
     }
-    if(s1.head==-1)
+    while((*ptr).head >= 0)
     {
-        printf("balanced");
-    }
-    else
-    {
-        printf("NO");
+        printf("%c",pop(&s1));
     }
 }
