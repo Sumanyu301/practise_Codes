@@ -1,97 +1,73 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <string.h>
+#include <math.h>
 
-struct stack
-{
-    char arr[100];
-    int head;
-};
-void initialise(struct stack *ptr)
-{
- (*ptr).head = -1;
+int intoNum(char *str) {
+    int ans = 0, len = strlen(str);
+    for(int i = 0; i < len; i++) {
+        ans *= 10;
+        ans += (str[i] - '0');
+    }
+
+    return ans;
 }
-void push(struct stack *ptr , char value)
-{
-    if((*ptr).head==sizeof((*ptr).arr)/sizeof((*ptr).arr[0]))
-    {
-        printf("overflow");
-        exit(1);
-    }
-    else
-    {
-        (*ptr).head++;
-        (*ptr).arr[(*ptr).head] = value;
-    }
+
+int isOper(char ch) {
+    return (ch == '+' || ch == '-' ||
+    ch == '*' || ch == '/' || ch == '^');
 }
-char pop(struct stack *ptr)
-{
-    if((*ptr).head == -1)
-    {
-        printf("underflow");
-        exit(1);
-    }
-    else
-    {
-        char a;
-        a = (*ptr).arr[(*ptr).head];
-        (*ptr).head--;
-        return(a); 
+
+int calculate(int num1, int num2, char oper) {
+    switch (oper) {
+        case '+' :
+        return num1 + num2;
+        case '-' :
+        return num1 - num2;
+        case '*' :
+        return num1 * num2;
+        case '/' :
+        return num1 / num2;
+        case '^' :
+        return pow(num1, num2);
+        default:
+        return -1;
     }
 }
-char peek(struct stack *ptr)    
-{
-    if((*ptr).head == -1)
-    {
-        printf("underflow");
-        exit(1);
-    }
-    else
-    {
-        return((*ptr).arr[(*ptr).head]);
-    }
-}
-int main()
-{
-    struct stack s1;
-    struct stack *ptr;
-    ptr=&s1;
-    initialise(&s1);
-    char srr[100];
-    gets(srr);
-    int i;
-    for(int i=0;srr[i]!='\0';i++)
-    {
-        if(srr[i]=='['||srr[i]=='('||srr[i]=='{')
-        {
-            push(&s1,srr[i]);
+
+int ans(char *str) {
+    int stack[10];
+    int top = -1;
+    int len = strlen(str);
+    for(int i = 0; i < len; i++) {
+        if(str[i] == ' ' || str[i] == '\t') {
+            continue;
         }
-        else if(srr[i]==']'||srr[i]==')'||srr[i]=='}')
-        {
-            if(srr[i]==']'&&pop(&s1)=='[')
-            {
-                continue;
+        if(isOper(str[i])) {
+            int num2 = stack[top--];
+            int num1 = stack[top--];
+            stack[++top] = calculate(num1, num2, str[i]);
+        }
+        else {
+            int start = i;
+            int size = 0;
+            while(str[i] != ' ') {
+                i++;
+                size++;
             }
-            else if(srr[i]==')'&&pop(&s1)=='(')
-            {
-                continue;
-            }
-            else if (srr[i]=='}'&&pop(&s1)=='{')
-            {
-                continue;
-            }
-            else
-            {
-                printf("not balanced");
-                return 1;
-            }
+            char temp[10];
+            strncpy(temp, str + start, size);
+            temp[size] = '\0';
+            stack[++top] = intoNum(temp);
         }
     }
-    if(s1.head==-1)
-    {
-        printf("balanced");
-    }
-    else
-    {
-        printf("NO");
-    }
+
+    return stack[top];
+}
+
+int main() {
+    char str[20];
+    printf("Enter string: ");
+    scanf("%[^\n]s", str);
+    int result = ans(str);
+    printf("Result is : %d \n", result);
 }

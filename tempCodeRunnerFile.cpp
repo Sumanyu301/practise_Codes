@@ -1,56 +1,30 @@
-// #include <stdio.h>
-// #include <string.h>
-
-// struct student {
-//     char name[20];
-//     int age;
-//     int marks;
-// };
-
-// int main(void) {
-//     struct student S1;
-//     strcpy(S1.name, "John"); // Corrected initialization of the name member
-//     S1.marks = 93;
-//     S1.age = 13;
-// }
-
-
-#include <stdio.h>
-#include <string.h>
-
-// struct Person
-// {
-//     char name[30];
-//     int age;
-//     char gender;
-// };
-
-// int main()
-// {
-//     struct Person person = { "John", 25, 0 };
-    
-//     printf(
-//         "name: %s\n"
-//         "age: %d\n"
-//         "gender: %d\n",
-//         person.name, person.age, person.gender);
-//     getchar();
-// }
-#include <stdio.h>
-
-struct pet {
-    char name[20];
-    int age;
-    double weight;
-};
-
-int main(void) {
-    struct pet dog;
-    strcpy(dog.name, "Matty");
-    dog.age = 4;
-    dog.weight = 8.2;
-    
-    return 0;
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int s;
+    cin>>s;
+    while(s--)
+    {
+        int len;
+        cin>>len;
+        int price;
+        cin>>price;
+        int arr[len];
+        for(int i=0;i<len;i++)
+        {
+            cin>>arr[i];
+        }
+        int val=0;
+        int count=0;
+        for(int i=0;i<len;i++)
+        {
+            if(val<arr[i])
+            {
+                count++;
+                val=arr[i];
+            }
+        }
+        cout<<count*price;
+    }
 }
-
-
