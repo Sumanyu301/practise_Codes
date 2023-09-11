@@ -1,73 +1,112 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
-#include <math.h>
+#include <stdbool.h>
+#define max 100
 
-int intoNum(char *str) {
-    int ans = 0, len = strlen(str);
-    for(int i = 0; i < len; i++) {
-        ans *= 10;
-        ans += (str[i] - '0');
+char stack[max];
+int head = -1;
+
+int isoperator(char value)
+{
+    if (value == '+' || value == '-' || value == '*' || value == '/' || value == '^')
+        return 1;
+    else
+        return 0;
+}
+
+int is_char(char value)
+{
+    if ((value >= 'a' && value <= 'z') || (value >= 'A' && value <= 'Z'))
+        return 1;
+    else
+        return 0;
+}
+
+void push(char value)
+{
+    if (head == max - 1)
+    {
+        printf("Overflow\n");
+        exit(1);
     }
-
-    return ans;
-}
-
-int isOper(char ch) {
-    return (ch == '+' || ch == '-' ||
-    ch == '*' || ch == '/' || ch == '^');
-}
-
-int calculate(int num1, int num2, char oper) {
-    switch (oper) {
-        case '+' :
-        return num1 + num2;
-        case '-' :
-        return num1 - num2;
-        case '*' :
-        return num1 * num2;
-        case '/' :
-        return num1 / num2;
-        case '^' :
-        return pow(num1, num2);
-        default:
-        return -1;
+    else
+    {
+        head++;
+        stack[head] = value;
     }
 }
 
-int ans(char *str) {
-    int stack[10];
-    int top = -1;
-    int len = strlen(str);
-    for(int i = 0; i < len; i++) {
-        if(str[i] == ' ' || str[i] == '\t') {
-            continue;
+int precedence(char value)
+{
+    if (value == '+' || value == '-')
+    {
+        return 1;
+    }
+    else if (value == '*' || value == '/')
+    {
+        return 2;
+    }
+    else if (value == '^')
+    {
+        return 3;
+    }
+    return 0;
+}
+
+int more_pre(char value)
+{
+    if (stack[head] == '^')
+    {
+        return 0;
+    }
+    if (precedence(value) >= precedence(stack[head]))
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+int main()
+{
+    char str[max];
+    fgets(str, sizeof(str), stdin);
+    char result[max];
+    int point = 0;
+
+    for (int i = 0; i < strlen(str); i++)
+    {
+        if (is_char(str[i]))
+        {
+            result[point] = str[i];
+            point++;
         }
-        if(isOper(str[i])) {
-            int num2 = stack[top--];
-            int num1 = stack[top--];
-            stack[++top] = calculate(num1, num2, str[i]);
-        }
-        else {
-            int start = i;
-            int size = 0;
-            while(str[i] != ' ') {
-                i++;
-                size++;
+        else if (isoperator(str[i]))
+        {
+            while (head >= 0 && isoperator(stack[head]) && more_pre(str[i]))
+            {
+                result[point] = stack[head];
+                point++;
+                head--;
             }
-            char temp[10];
-            strncpy(temp, str + start, size);
-            temp[size] = '\0';
-            stack[++top] = intoNum(temp);
+            push(str[i]);
         }
     }
 
-    return stack[top];
-}
+    while (head >= 0)
+    {
+        result[point] = stack[head];
+        point++;
+        head--;
+    }
 
-int main() {
-    char str[20];
-    printf("Enter string: ");
-    scanf("%[^\n]s", str);
-    int result = ans(str);
-    printf("Result is : %d \n", result);
+    for (int j = 0; j < point; j++)
+    {
+        printf("%c", result[j]);
+    }
+
+    return 0;
 }

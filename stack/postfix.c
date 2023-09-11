@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include <math.h>
 
 #define max 100
 
@@ -73,7 +74,7 @@ int result(char operator, int var1, int var2)
     }
     else if(operator == '^')
     {
-        return(pow())
+        return(pow(var1,var2));
     }
     else
     {
