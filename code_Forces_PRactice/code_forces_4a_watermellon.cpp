@@ -18,4 +18,4 @@ int main()
         cout << "NO";
     }
 }
-4A - Watermelon
+// 4A - Watermelon
