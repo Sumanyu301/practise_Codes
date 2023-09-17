@@ -29,11 +29,9 @@ int main()
     }
     for(int i=0;i<max+1;i++)
     {
-        if(frequency[i]==1)
-        {
-        cout<<i<<endl;
-        }
+        cout<<frequency[i]<<endl;
     }
+    cout<<max;
 }
 
 
