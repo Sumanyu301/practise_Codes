@@ -1,43 +1,71 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
+
 int main()
 {
-    int n;
-    cin>>n;
-    int arr[n];
-    for(int i=0;i<n;i++)
+    int m, n;
+    cin >> n;
+    cin >> m;
+
+    int top = 0;
+    int bottom = n - 1;
+    int left = 0;
+    int right = m - 1;
+    int arr[n][m];
+
+    for (int i = 0; i < n; i++)
     {
-        cin>>arr[i];
-    }
-    int max=0;
-    for(int i=0;i<n;i++)
-    {
-        if(arr[i]>max)
+        for (int j = 0; j < m; j++)
         {
-            max=arr[i];
+            cin >> arr[i][j];
         }
     }
-    int frequency[max+1];
-    for(int i=0;i<max+1;i++)
+
+    while (top <= bottom && left <= right)
     {
-        frequency[i]=0;
-    }
-    for(int i=0;i<n;i++)
-    {
-        int id = arr[i];
-        frequency[id]++;
-    }
-    for(int i=0;i<max+1;i++)
-    {
-        if(frequency[i]==1)
+        
+       
+        while (left <= right)
         {
-        cout<<i<<endl;
+            cout << arr[top][left] << " ";
+            left++;
+        }
+        top++;
+
+        
+        
+        while (top <= bottom)
+        {
+            cout << arr[top][right] << " ";
+            top++;
+        }
+        right--;
+
+        
+        if (top <= bottom)
+        {
+            
+            
+            while (right >= left)
+            {
+                cout << arr[bottom][right] << " ";
+                right--;
+            }
+            bottom--;
+        }
+
+        if (left <= right)
+        {
+            
+            
+            while (bottom >= top)
+            {
+                cout << arr[bottom][left] << " ";
+                bottom--;
+            }
+            left++;
         }
     }
+
+    return 0;
 }
-
-
-
-
-
-
