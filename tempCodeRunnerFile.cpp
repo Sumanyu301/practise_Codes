@@ -1,71 +1,22 @@
-#include <iostream>
+#include<iostream>
 using namespace std;
-
+struct a
+{
+    char name[20];
+    int age;
+    float sal;
+};
+a e1 ={"gfds",21,34567.567};
+a e2 ={"bfds",31,44567.567};
+a &fun();
 int main()
 {
-    int m, n;
-    cin >> n;
-    cin >> m;
-
-    int top = 0;
-    int bottom = n - 1;
-    int left = 0;
-    int right = m - 1;
-    int arr[n][m];
-
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < m; j++)
-        {
-            cin >> arr[i][j];
-        }
-    }
-
-    while (top <= bottom && left <= right)
-    {
-        
-       
-        while (left <= right)
-        {
-            cout << arr[top][left] << " ";
-            left++;
-        }
-        top++;
-
-        
-        
-        while (top <= bottom)
-        {
-            cout << arr[top][right] << " ";
-            top++;
-        }
-        right--;
-
-        
-        if (top <= bottom)
-        {
-            
-            
-            while (right >= left)
-            {
-                cout << arr[bottom][right] << " ";
-                right--;
-            }
-            bottom--;
-        }
-
-        if (left <= right)
-        {
-            
-            
-            while (bottom >= top)
-            {
-                cout << arr[bottom][left] << " ";
-                bottom--;
-            }
-            left++;
-        }
-    }
-
+    fun()=e2;
+    cout<<e1.name<<endl<<e1.age<<endl<<e1.sal<<endl;
     return 0;
+}
+a &fun()
+{
+    cout<<e1.name<<endl<<e1.age<<endl<<e1.sal<<endl;
+    return e1;
 }
