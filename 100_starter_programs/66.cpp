@@ -18,7 +18,7 @@ using namespace std;
 void evemul(int arr[], int n)
 {
     int m = 1;
-    for (int i = 0; i < n-1; i += 2)
+    for (int i = 0; i < n; i += 2)
     {
         m *= arr[i];
     }

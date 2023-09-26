@@ -13,3 +13,26 @@
 // 1 2 3 4
 // Sample Output 1
 // 8
+#include <bits/stdc++.h>
+using namespace std;
+void evemul(int arr[], int n)
+{
+    int m = 1;
+    for (int i = 1; i < n; i += 2)
+    {
+        m *= arr[i];
+    }
+    cout << m;
+}
+int main()
+{
+    int n;
+    cin >> n;
+    int arr[n];
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+    }
+    evemul(arr, n);
+    return 0;
+}
