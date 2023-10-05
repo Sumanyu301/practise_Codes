@@ -1,29 +1,52 @@
-//givrn an arrat and sum find if we can make sum = k using elements of array , elementd can be in any order.
 #include <iostream>
+#include <string>
 using namespace std;
 
-bool canmakesum(int arr[], int n, int k) {
-    if (k == 0) {
-        return true; 
-    }
-    if (n <= 0) {
-        return false; 
-    }
-    return canmakesum(arr, n - 1, k - arr[n - 1]) || canmakesum(arr, n - 1, k);
-}
+class employee
+{
+private:
+    int salary;
+    string name;
+    int id;
 
-int main() {
-    int n, k;
-    cin >> n;
-    int arr[n];
-        cin >> k;
-    for (int i = 0; i < n; i++) {
-        cin >> arr[i];
+public:
+    void get_details(int a, string str, int pid)
+    {
+        salary = a;
+        name = str;
+        id = pid;
     }
-    if (canmakesum(arr, n, k)) {
-        cout << "Yes";
-    } else {
-        cout << "No";
+
+    void raise()
+    {
+        if (salary < 20000)
+        {
+            salary += (0.20 * salary); // 20% raise
+        }
+        else if (salary < 30000)
+        {
+            salary += (0.15 * salary); // 15% raise
+        }
+        else
+        {
+            salary += (0.10 * salary); // 10% raise
+        }
     }
+
+    int show()
+    {
+        return salary;
+    }
+};
+
+int main()
+{
+    employee e1;
+    e1.get_details(20000, "asdfgh", 1);
+    cout << "Original Salary: " << e1.show() << endl;
+
+    e1.raise();
+    cout << "Salary After Raise: " << e1.show() << endl;
+
     return 0;
 }
