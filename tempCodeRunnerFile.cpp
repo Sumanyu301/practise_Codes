@@ -1,37 +1,26 @@
-#include <iostream>
-#include <string>
+#include<iostream>
+#include<string>
+#include<cstdlib>
+#include<iomanip>
+#include<cmath>
+#include<fstream>
+#include<stdio.h>
+#include<algorithm>
 using namespace std;
-
-class student {
-    int roll;
-    string name;
-
-public:
-    student(int r, string n)
-    {
-        roll = r;
-        name =n;
-    }
-    void setRoll(int r) {
-        roll = r;
-    }
-
-    void setName(const string& n) {
-        name = n;
-    }
-    void print() {
-        cout << "Roll: " << roll << "Name: " << name << endl;
-    }
-};
-
-int main() {
-    student s1(21, "input1");
-    student s2(s1); 
-    s1.print(); 
-    s2.print(); 
-    s1.setName("input2");
-    s1.setRoll(21);
-    s1.print();
-    s2.print();
-    return 0;
+long long  int n,m,i,a[111111],x=0,t=1;
+int main()
+{
+//freopen("input.txt","r",stdin);
+//freopen("output.txt","w",stdout);
+scanf("%d%d",&n,&m);
+for(i=1;i<=m;i++)
+{
+	scanf("%d",&a[i]);
+	if(a[i]>t){x+=a[i]-t;t=a[i];}
+	else if(a[i]<t){x+=(n+1)-t+a[i]-1;t=a[i];}
 }
+printf("%I64d",x);
+return 0;
+}
+
+
