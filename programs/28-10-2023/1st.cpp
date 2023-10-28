@@ -16,7 +16,10 @@ class Complex
                 
     void display()
     {
-        cout<<real<<"+i"<<img<<endl;
+        if(img>0)
+        cout<<real<<"+"<<img<<"i"<<endl;
+        else
+        cout<<real<<img<<"i"<<endl;
     }
                 
     Complex operator+(Complex c)
@@ -33,6 +36,13 @@ class Complex
         temp.img=img-c.img;
         return temp;
     }
+     Complex operator*(Complex c)
+    {
+        Complex temp;
+        temp.real=real*c.real;
+        temp.img=img*c.img;
+        return temp;
+    }
     
 };
 
@@ -41,8 +51,13 @@ int main()
 	Complex c1(5,3),c2(10,5),c3;
 
     c3=c1+c2;
-
     c3.display();
+    c3=c1-c2;
+    c3.display();
+    c3=c1*c2;
+    c3.display();
+
+
         
 }
     
