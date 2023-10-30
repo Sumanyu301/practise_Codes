@@ -1,48 +1,35 @@
+// defining the constructor within the class
+
 #include <iostream>
 using namespace std;
 
-class Complex
-{
-    private:
-    int real;
-    int img;
-            
-    public:
-    Complex(int r=0,int i=0)
-    {
-        real=r;
-        img=i;
-    }
-                
-    void display()
-    {
-        cout<<real<<"+i"<<img<<endl;
-    }
-                
-    Complex operator+(Complex c)
-    {
-        Complex temp;
-        temp.real=real+c.real;
-        temp.img=img+c.img;
-        return temp;
-    }
-    Complex operator-(Complex c)
-    {
-        Complex temp;
-        temp.real=real-c.real;
-        temp.img=img-c.img;
-        return temp;
-    }
-    
+class student {
+	int rno;
+	char name[10];
+	double fee;
+
+public:
+	student()
+	{
+		cout << "Enter the RollNo:";
+		cin >> rno;
+		cout << "Enter the Name:";
+		cin >> name;
+		cout << "Enter the Fee:";
+		cin >> fee;
+	}
+
+	void display()
+	{
+		cout << endl << rno << "\t" << name << "\t" << fee;
+	}
 };
 
 int main()
 {
-	Complex c1(5,3),c2(10,5),c3;
+	student s; // constructor gets called automatically when
+			// we create the object of the class
+	s.display();
 
-    c3=c1+c2;
-
-    c3.display();
-        
+	return 0;
 }
-    
