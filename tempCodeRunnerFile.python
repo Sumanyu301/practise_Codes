@@ -1,13 +1,24 @@
-def sum_of_largest_and_smallest(numbers):
-    smallest = largest = numbers[0]
-    for number in numbers:
-        if number < smallest:
-            smallest = number
-        elif number > largest:
-            largest = number
-    return smallest + largest
+def min_rounds(n, arr, brr):
+    min_diff = float('inf')
+    for i in range(3):
+        for j in range(3):
+            chef = 0
+            chefina = 0
+            for k in range(n):
+                if (arr[k], brr[k]) == (i, j):
+                    pass
+                elif (arr[k], brr[k]) == ('R', 'S') or (arr[k], brr[k]) == ('S', 'P') or (arr[k], brr[k]) == ('P', 'R'):
+                    chef += 1
+                else:
+                    chefina += 1
+            if chef > chefina:
+                min_diff = min(min_diff, chef)
+    return min_diff if min_diff != float('inf') else -1
 
-# Example usage
-numbers = [1, 5, 10, -2, 7]
-result = sum_of_largest_and_smallest(numbers)
-print(result) # Output: -1
+t = int(input())
+while t:
+    n = int(input())
+    arr = list(map(str, input().split()))
+    brr = list(map(str, input().split()))
+    print(min_rounds(n, arr, brr))
+    t -= 1

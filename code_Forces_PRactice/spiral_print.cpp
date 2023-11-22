@@ -21,7 +21,7 @@ int main()
     }
     t++;
     for(int i = t;i<=b;i++)
-    {
+    {   
         cout<<arr[i][r]<<" ";
     }
     r--;
