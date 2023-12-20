@@ -1,54 +1,69 @@
-// C++ program to evaluate value of a postfix expression
 #include <bits/stdc++.h>
 using namespace std;
 
-// The main function that returns value 
-// of a given postfix expression
-int evaluatePostfix(string exp)
-{
-	// Create a stack of capacity equal to expression size
-	stack<int> st;
-
-	// Scan all characters one by one
-	for (int i = 0; i < exp.size(); ++i) {
-		
-		// If the scanned character is an operand 
-		// (number here), push it to the stack.
-		if (isdigit(exp[i]))
-			st.push(exp[i] - '0');
-
-		// If the scanned character is an operator, 
-		// pop two elements from stack apply the operator
-		else {
-			int val1 = st.top();
-			st.pop();
-			int val2 = st.top();
-			st.pop();
-			switch (exp[i]) {
-			case '+':
-				st.push(val2 + val1);
-				break;
-			case '-':
-				st.push(val2 - val1);
-				break;
-			case '*':
-				st.push(val2 * val1);
-				break;
-			case '/':
-				st.push(val2 / val1);
-				break;
-			}
-		}
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n;
+	cin >> n;
+	int arr[n];
+	for(int i=0;i<n;i++)
+	{
+		cin>>arr[i];
 	}
-	return st.top();
-}
+	int res = 0;
+	int x =n;
+	int k=0;
+	int a =n/2;
+	while(a--)
+	{
+		for(int i=0;i<x;i++)
+			{
+				if(arr[i]==0)
+				{
+					if(arr[i]+arr[i+1]==1)
+					{
+						res+=1;
+						for(int j=i;j<x-2;j++)
+						{
+							arr[j]=arr[j+2];
+							x-=2;
+						}
+						x-=2;
+						break;
+					}
+					else if(arr[i-1]+arr[i]==1)
+					{
+						res+=1;
+						for(int j=i-1;j<x-2;j++)
+						{
+							arr[j]=arr[j+2];
+							k=1;
+						}
+						x-=2;
+						break;
+					}
+					else
+					{
+						;
+					}
+				}
+			}
+			if(k==0)
+			{
+				res+=0;
+				for(int j=0;j<x-2;j++)
+					{
+						arr[j]=arr[j+2];
+					}
+					x-=2;
+			}
+	}
+	cout<<res<<endl;
 
-// Driver code
-int main()
-{
-	string exp = "231*+9-";
-
-	// Function call
-	cout << "postfix evaluation: " << evaluatePostfix(exp);
+	}
+	
 	return 0;
 }
