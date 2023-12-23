@@ -1,2 +1,1 @@
-
-    {
+cout<<setprecision(12)<<num;
