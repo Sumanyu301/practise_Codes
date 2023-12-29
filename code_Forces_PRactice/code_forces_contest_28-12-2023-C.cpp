@@ -1,25 +1,25 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-bool isPerfectSquare(int num)
+bool isPerfectSquare(long long num)
 {
-    int sqrtNum = sqrt(num);
+    long long sqrtNum = sqrt(num);
     return sqrtNum * sqrtNum == num;
 }
 
 int main()
 {
-    int t;
+    long long t;
     cin >> t;
     while (t--)
     {
-        int n;
+        long long n;
         cin >> n;
         
-        vector<int> arr(n); 
+        vector<long long> arr(n); 
 
-        int sum = 0;
-        for (int i = 0; i < n; i++)
+        long long sum = 0;
+        for (long long i = 0; i < n; i++)
         {
             cin >> arr[i];
             sum += arr[i];
