@@ -1,43 +1,61 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 int main()
 {
-    int n, m;
-    cin >> n >> m;
-    int arr[n][m];
-    for (int i = 0; i < n; i++)
+    int t;
+    cin >> t;
+    while (t--)
     {
-        for (int j = 0; j < m; j++)
-        {
-            cin >> arr[i][j];
-        }
-    }
-    int left =0;
-    int right =m-1;
-    int down =n-1;
-    int up =0;
-    while(left<=right && up<=down )
-    {
-        for(int i=left;i<=right;i++)
-        {
-            cout<<arr[up][i]<<" ";
-        }
-        up++;
-        for(int i=up;i<=down;i++)
-        {
-            cout<<arr[i][right]<<" ";
-        }
-        right--;
-        for(int i=right;i>=left;i--)
-        {
-            cout<<arr[down][i]<<" ";
-        }
-        down--;
-        for(int i=down;i>=up;i--)
-        {
-            cout<<arr[i][left]<<" ";
-        }
-        left++;
+       int n;
+       cin>>n;
+       int a[n];
+       int b[n];
+       int c[n];
+       for(int i=0;i<n;i++)
+       {
+        cin>>a[i];
+       }
+      for(int i=0;i<n;i++)
+       {
+        cin>>b[i];
+       }
+       sort(a,a+n); 
+       sort(b,b+n);
+       int max = a[0]+b[n-1];
+       int res[n];
+       int res1[n];
+       for(int i=0;i<n;i++)
+       {
+          res[i] = max-a[i];
+          res1[i] = max-a[i];
+       }
+       sort(res1,res1+n);
+       bool isEqual = true;
+       for(int i=0; i<n; i++)
+       {
+           if(res1[i] != b[i])
+           {
+               isEqual = false;
+               break;
+           }
+       }
+       if(isEqual)
+       {
+        for(int i=0;i<n;i++)
+       {
+        cout<<a[i]<<" ";
+       }
+       cout<<endl;
+       for(int i=0;i<n;i++)
+       {
+        cout<<res[i]<<" ";
+       }
+       cout<<endl;
+       }
+       else
+       {
+           cout << "-1" << endl;
+       }
     }
 }
