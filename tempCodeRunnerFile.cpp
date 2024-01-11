@@ -1,41 +1,20 @@
-#include <bits/stdc++.h>
-using namespace std;
+#include <iostream>
+#include <algorithm>
 
 int main() {
-	int t;
-	cin>>t;
-	while(t--)
-	{
-	    int n,big,small;
-		int a =n;
-	    cin>>n>>big>>small;
-	    for(int i=0;i<n;i++)
-			{
-				if(small%3==0&&big>0)
-				{
-					small-=3;
-					big--;
-					a--;
-				}
-				else if(small%3!=0&&big>=2)
-				{
-					big-=2;
-					a--;
-				}
-				else
-				{
-					;
-				}
-			}
-			if(a<=0)
-			{
-				cout<<"YES"<<endl;
-			}
-			else
-			{
-				cout<<"NO"<<endl;
-			}
+    int arr[] = {1, 2, 3, 4, 5};
+    int size = sizeof(arr) / sizeof(arr[0]);
 
-	}
+    // Searching for the value 3 in the array
+    int valueToFind = 3;
+    auto result = std::find(arr, arr + size, valueToFind);
 
+    // Check if the value was found
+    if (result != std::end(arr)) {
+        std::cout << "Value " << valueToFind << " found at index " << std::distance(arr, result) << std::endl;
+    } else {
+        std::cout << "Value " << valueToFind << " not found in the array" << std::endl;
+    }
+
+    return 0;
 }
